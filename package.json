@@ -1,11 +1,11 @@
 {
-  "name": "MovieApp-Boilerplate",
+  "name": "movie-app",
   "version": "0.1.0",
   "description": "This is the boilerplate for Movie App (10 Movies to watch till I die)",
   "main": "index.js",
   "scripts": {
-    "start": "node index",
-    "test" : "mocha server/test/."
+    "start": "node server/index",
+    "test": "mocha server/test/."
   },
   "author": "StackRoute <learner.support@stackroute.in>",
   "license": "ISC",
@@ -18,5 +18,9 @@
   },
   "devDependencies": {
     "chai": "^4.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab-wd.stackroute.in/HobbesCadets/movieapp-boilerplate.git"
   }
 }
