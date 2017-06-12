@@ -1,27 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Movie App</title>
-    <link rel='icon' src='favicon.ico'>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-
-</head>
-<body>
-<nav class='navbar navbar-default'>
-<div class='navbar-header'>
-<div class='navbar-brand'>
-MoviesSearch
-</div>
-</div>
-</nav>
-<center>
-<input id='movie' type='text' name='search'>
-<button id='searchbtn' type='submit' class='btn btn-primary' onclick="getMovie()">Search</button>
-<button id='favbtn' type='submit' class='btn btn-primary' onclick='favMovie()'>Favourite</button>
-<table id='result' class='table'><tbody></tbody></table>
-</center>
-<script>
 var favArr=[];
 var movieObj;
 function getMovie(){
@@ -36,7 +12,7 @@ function getMovie(){
         success:function(data){
             
             var result_data=$.parseJSON(data);
-            console.log(result_data);
+            
             var length=result_data.total_results;
             var tableHtml='';
             tableHtml+='<tr>';
@@ -50,12 +26,12 @@ function getMovie(){
                 console.log(result_data.results[i].title);
                 var newObj={Title:result_data.results[i].title,Poster:posterPath,Release_Date:result_data.results[i].release_date};
                 movieObj=JSON.stringify(newObj);
-               var parseobj=JSON.parse(movieObj);
+                
                 tableHtml+='<tr>';
                 tableHtml+='<td>'+result_data.results[i].title+'</td>';
                 tableHtml+='<td><img src='+posterPath+'></td>';
                 tableHtml+='<td>'+result_data.results[i].release_date+'</td>';
-                tableHtml+="<td><button onclick='addFavourite(event)' class='btn btn-success' value='"+ movieObj +"'>Add</button></td></tr>";
+                tableHtml+="<td><button onclick='addFavourite(event)' value='"+ movieObj +"'>Add</button></td></tr>";
                 tableHtml+='</tr>';
             }
             
@@ -76,7 +52,7 @@ function favMovie(){
     favHtml+='<th>Title</th>';
     favHtml+='<th>Poster</th>';
     favHtml+='<th>Release Date</th>';
-    favHtml+='</tr>';
+    favHtml+='</tr>'
     for(var j=0;j<favArr.length;j++){
         favHtml+='<tr>';
         favHtml+='<td>'+favArr[j].Title+'</td>';
@@ -87,9 +63,3 @@ function favMovie(){
      $('#result tbody').html(favHtml);
 }
 
-
-</script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</body>
-</html>
